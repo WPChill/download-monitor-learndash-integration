@@ -21,15 +21,17 @@ class DLM_AMM_Learndash {
 		load_plugin_textdomain( 'dlm-aam-learndash', false, dirname( plugin_basename( DLM_AAM_LD_FILE ) ) . '/languages/' );
 
 		if( 'ok' !== $this->core_exists() ){
-			$this->display_notice_core_missing();
-			return;
-		}
+			if( is_admin() ){
+				$this->display_notice_core_missing();
+			}
+		}else{
 
-		add_filter( 'dlm_aam_group', array( $this, 'add_groups' ), 15, 1 );
-		add_filter( 'dlm_aam_group_value_learndash', array( $this, 'learndash_group_value' ), 15 );
-		add_filter( 'dlm_aam_restriction', array( $this, 'restrictions' ), 15, 1 );
-		add_filter( 'dlm_aam_rest_variables', array( $this, 'rest_variables' ), 15, 1 );
-		add_filter( 'dlm_aam_rule_learndash_applies', array( $this, 'learndash_rule' ), 15, 2 ); 
+			add_filter( 'dlm_aam_group', array( $this, 'add_groups' ), 15, 1 );
+			add_filter( 'dlm_aam_group_value_learndash', array( $this, 'learndash_group_value' ), 15 );
+			add_filter( 'dlm_aam_restriction', array( $this, 'restrictions' ), 15, 1 );
+			add_filter( 'dlm_aam_rest_variables', array( $this, 'rest_variables' ), 15, 1 );
+			add_filter( 'dlm_aam_rule_learndash_applies', array( $this, 'learndash_rule' ), 15, 2 );
+		}
 	}
 
 	/**
