@@ -22,7 +22,7 @@ class DLM_AMM_Learndash {
 
 		if( 'ok' !== $this->core_exists() ){
 			if( is_admin() ){
-				$this->display_notice_core_missing();
+				add_action( 'admin_notices', array( $this, 'display_notice_core_missing' ) );
 			}
 		}else{
 
@@ -202,6 +202,11 @@ class DLM_AMM_Learndash {
 	 */
 	public function core_exists() {
 
+		// check for Learndash addon
+		if( !defined( 'LEARNDASH_VERSION' ) ){
+			return 'missing_lrd';
+		}
+
 		// check for Download Monitor & DLM Advanced Access Manager
 
 		if( !defined( 'DLM_VERSION' ) && !class_exists( 'DLM_Advanced_Access_Manager' ) ){
@@ -217,7 +222,7 @@ class DLM_AMM_Learndash {
 		if( !class_exists( 'DLM_Advanced_Access_Manager' ) ){
 			return 'missing_aam';
 		}
-		
+
 		return 'ok';
 	}
 
@@ -234,11 +239,9 @@ class DLM_AMM_Learndash {
 			'missing_both' 	=> __( 'Download Monitor - Advanced Access Manager - Learndash extension requires Download Monitor & Download Monitor - Advanced Access Manager addons in order to work.', 'dlm-aam-learndash' ),
 			'missing_dlm' 	=> __( 'Download Monitor - Advanced Access Manager - Learndash extension requires Download Monitor addon in order to work.', 'dlm-aam-learndash' ),
 			'missing_aam'	=> __( 'Download Monitor - Advanced Access Manager - Learndash extension requires Download Monitor - Advanced Access Manager addon in order to work.', 'dlm-aam-learndash' ),
+			'missing_lrd'	=> __( 'Download Monitor - Advanced Access Manager - Learndash extension requires LearnDasn LMS addon in order to work.', 'dlm-aam-learndash' ),
 		);
-		?>
-		<div class="error">
-			<p><?php echo esc_html( $notice_messages[ $core_exists ] ); ?></p>
-		</div>
-		<?php
+		$class = 'notice notice-error';
+		printf( '<div class="%1$s"><p>%2$s</p></div>', esc_attr( $class ), esc_html( $notice_messages[ $core_exists ] ) ); 
 	}
 }
