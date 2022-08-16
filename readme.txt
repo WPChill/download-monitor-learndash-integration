@@ -1,15 +1,48 @@
-=== Download Monitor Advanced Access Manager Learndash ===
+=== Download Monitor - Advanced Access Manager - Learndash  ===
+Contributors: wpchill
+Tags: best download monitor plugin, manage downloads access, manage user access, download counts, learndash downloads, DLM learndash integration, learndash download access manager, manage user downloads, manage members downloads, manage courses downloads, learndash groups downloads, 
+Requires at least: 5.2
+Tested up to: 6.0
+Requires PHP: 5.6
+Stable tag: 1.0.0
+License: GNU General Public License v3.0 or later
+The WordPress gallery plugin that's highly customizable & you can use to impress your clients. Create beautiful image galleries in minutes.
 
-The Advanced Access Manager - Learndash extension allows you to limit downloads to Learndash user groups.
+== Description == 
+With Download Monitor - Advanced Access Manager - Learndash you can allow only certain LearnDash groups users to download from your website.
 
 == Installation ==
+**For automatic installation:**
 
-To install this plugin, please refer to the guide here: [http://codex.wordpress.org/Managing_Plugins#Manual_Plugin_Installation](http://codex.wordpress.org/Managing_Plugins#Manual_Plugin_Installation)
+The simplest way to install is to click on \'Plugins\' then \'Add\' and type \'Download Monitor Advanced Access Manager Learndash\' in the search field.
 
-= Usage =
+**For manual installation 1:**
 
-See https://www.download-monitor.com/documentation/ for documentation.
+1. Login to your website and go to the Plugins section of your admin panel.
+2. Click the Add New button.
+3. Under Install Plugins, click the Upload link.
+4. Select the plugin zip file (dlm-aam-learndash.x.x.x.zip) from your computer then click the Install Now button.
+5. You should see a message stating that the plugin was installed successfully.
+6. Click the Activate Plugin link.
 
-= Terms & Conditions =
+**For manual installation 2:**
 
-Please read the latest Terms & Conditions here: [https://www.download-monitor.com/terms-conditions/](https://www.download-monitor.com/terms-conditions/)
+1. You should have access to the server where WordPress is installed. If you don\'t, see your system administrator.
+2. Copy the plugin zip file (dlm-aam-learndash.x.x.x.zip) up to your server and unzip it somewhere on the file system.
+3. Copy the \"dlm-aam-learndash\" folder into the /wp-content/plugins directory of your WordPress installation.
+4. Login to your website and go to the Plugins section of your admin panel.
+5. Look for \"Download Monitor - Advanced Access Manager - Learndash\" and click Activate.
+
+== Frequently Asked Questions ==
+
+= How can I say thanks? =
+
+* Give us 5 stars on [Wordpress](https://wordpress.org/support/plugin/dlm-aam-learndash/reviews/)
+* Just recommend our plugin to your friends! or
+* Follow us on [Twitter](https://twitter.com/wpchillhq "Twitter") 
+
+
+== Changelog ==
+
+= 1.0.0 =
+* Initial Release
