@@ -21,9 +21,9 @@ class DLM_AMM_Learndash {
 		load_plugin_textdomain( 'dlm-aam-learndash', false, dirname( plugin_basename( DLM_AAM_LD_FILE ) ) . '/languages/' );
 
 		if( 'ok' !== $this->core_exists() ){
-			if( is_admin() ){
-				add_action( 'admin_notices', array( $this, 'display_notice_core_missing' ) );
-			}
+
+			add_action( 'admin_notices', array( $this, 'display_notice_core_missing' ) );
+			
 		}else{
 
 			add_filter( 'dlm_aam_group', array( $this, 'add_groups' ), 15, 1 );
