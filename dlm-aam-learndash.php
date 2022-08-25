@@ -1,7 +1,7 @@
 <?php
 /*
-	Plugin Name: Download Monitor - Advanced Access Manager - Learndash
-	Plugin URI: https://www.download-monitor.com/extensions/advanced-access-manager-learndash/
+	Plugin Name: Download Monitor & LearnDash integration
+	Plugin URI: https://www.download-monitor.com/extensions/dlm-learndash-integration/
 	Description: The Advanced Access Manager - Learndash extension allows you to limit downloads to Learndash user groups.
 	Version: 1.0.0
 	Author: WPChill

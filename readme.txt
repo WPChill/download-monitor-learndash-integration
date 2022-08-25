@@ -1,4 +1,4 @@
-=== Download Monitor - Advanced Access Manager - Learndash  ===
+=== Download Monitor & LearnDash integration  ===
 Contributors: wpchill
 Tags: best download monitor plugin, manage downloads access, manage user access, download counts, learndash downloads, DLM learndash integration, learndash download access manager, manage user downloads, manage members downloads, manage courses downloads, learndash groups downloads, 
 Requires at least: 5.2
@@ -9,7 +9,7 @@ License: GNU General Public License v3.0 or later
 The WordPress gallery plugin that's highly customizable & you can use to impress your clients. Create beautiful image galleries in minutes.
 
 == Description == 
-With Download Monitor - Advanced Access Manager - Learndash you can allow only certain LearnDash groups users to download from your website.
+With Download Monitor & LearnDash integration you can allow only certain LearnDash groups users to download from your website.
 
 == Installation ==
 **For automatic installation:**
@@ -31,13 +31,13 @@ The simplest way to install is to click on \'Plugins\' then \'Add\' and type \'D
 2. Copy the plugin zip file (dlm-aam-learndash.x.x.x.zip) up to your server and unzip it somewhere on the file system.
 3. Copy the \"dlm-aam-learndash\" folder into the /wp-content/plugins directory of your WordPress installation.
 4. Login to your website and go to the Plugins section of your admin panel.
-5. Look for \"Download Monitor - Advanced Access Manager - Learndash\" and click Activate.
+5. Look for \"Download Monitor & LearnDash integration\" and click Activate.
 
 == Frequently Asked Questions ==
 
 = How can I say thanks? =
 
-* Give us 5 stars on [Wordpress](https://wordpress.org/support/plugin/dlm-aam-learndash/reviews/)
+* Give us 5 stars on [Wordpress](https://wordpress.org/support/plugin/dlm-learndash-integration/reviews/)
 * Just recommend our plugin to your friends! or
 * Follow us on [Twitter](https://twitter.com/wpchillhq "Twitter") 
 

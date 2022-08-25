@@ -18,7 +18,7 @@ class DLM_AMM_Learndash {
 	public function __construct() {
 
 		// Load plugin text domain
-		load_plugin_textdomain( 'dlm-aam-learndash', false, dirname( plugin_basename( DLM_AAM_LD_FILE ) ) . '/languages/' );
+		load_plugin_textdomain( 'dlm-learndash-integration', false, dirname( plugin_basename( DLM_AAM_LD_FILE ) ) . '/languages/' );
 
 		if( 'ok' !== $this->core_exists() ){
 
@@ -63,7 +63,7 @@ class DLM_AMM_Learndash {
 	
 		$groups[] = array(
 			'key'        => 'learndash',
-			'name'       => esc_html__( 'LearnDash', 'dlm-aam-learndash' ),
+			'name'       => esc_html__( 'LearnDash', 'dlm-learndash-integration' ),
 			'conditions' => array(
 				'includes' => array(
 					'restriction' => array( 'null', 'amount', 'global_amount', 'daily_amount', 'monthly_amount', 'daily_global_amount', 'monthly_global_amount', 'date' ),
@@ -93,7 +93,7 @@ class DLM_AMM_Learndash {
 		// LearnDash groups.
 		$groups[] = array(
 			'key'  => 'null',
-			'name' => esc_html__( 'None', 'dlm-aam-learndash' ),
+			'name' => esc_html__( 'None', 'dlm-learndash-integration' ),
 		);
 
 		$learndash_groups = learndash_get_groups();
@@ -140,7 +140,7 @@ class DLM_AMM_Learndash {
 	 */
 	public function rest_variables( $rest_variables ) {
 
-        $vars['str_learndash'] = esc_html__( 'LearnDash', 'dlm-aam-learndash' );
+        $vars['str_learndash'] = esc_html__( 'LearnDash', 'dlm-learndash-integration' );
 
 		if ( ! function_exists( 'learndash_get_groups' ) ) {
 			$rest_variables['learndash_groups'] = '0';
@@ -236,10 +236,10 @@ class DLM_AMM_Learndash {
 	public function display_notice_core_missing() {
 		$core_exists = $this->core_exists();
 		$notice_messages = array(
-			'missing_both' 	=> __( 'Download Monitor - Advanced Access Manager - Learndash extension requires Download Monitor & Download Monitor - Advanced Access Manager addons in order to work.', 'dlm-aam-learndash' ),
-			'missing_dlm' 	=> __( 'Download Monitor - Advanced Access Manager - Learndash extension requires Download Monitor addon in order to work.', 'dlm-aam-learndash' ),
-			'missing_aam'	=> __( 'Download Monitor - Advanced Access Manager - Learndash extension requires Download Monitor - Advanced Access Manager addon in order to work.', 'dlm-aam-learndash' ),
-			'missing_lrd'	=> __( 'Download Monitor - Advanced Access Manager - Learndash extension requires LearnDasn LMS addon in order to work.', 'dlm-aam-learndash' ),
+			'missing_both' 	=> __( 'Download Monitor - Advanced Access Manager - Learndash extension requires Download Monitor & Download Monitor - Advanced Access Manager addons in order to work.', 'dlm-learndash-integration' ),
+			'missing_dlm' 	=> __( 'Download Monitor - Advanced Access Manager - Learndash extension requires Download Monitor addon in order to work.', 'dlm-learndash-integration' ),
+			'missing_aam'	=> __( 'Download Monitor - Advanced Access Manager - Learndash extension requires Download Monitor - Advanced Access Manager addon in order to work.', 'dlm-learndash-integration' ),
+			'missing_lrd'	=> __( 'Download Monitor - Advanced Access Manager - Learndash extension requires LearnDasn LMS addon in order to work.', 'dlm-learndash-integration' ),
 		);
 		$class = 'notice notice-error';
 		printf( '<div class="%1$s"><p>%2$s</p></div>', esc_attr( $class ), esc_html( $notice_messages[ $core_exists ] ) ); 
