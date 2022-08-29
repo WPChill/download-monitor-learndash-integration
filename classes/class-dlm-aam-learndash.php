@@ -20,9 +20,9 @@ class DLM_AMM_Learndash {
 		// Load plugin text domain
 		load_plugin_textdomain( 'dlm-learndash-integration', false, dirname( plugin_basename( DLM_AAM_LD_FILE ) ) . '/languages/' );
 
-		if( 'ok' !== $this->core_exists() ){
+		if( 'ok' !== $this->core_exists() && $this->is_dlm_admin_page() ){
 
-			add_action( 'admin_notices', array( $this, 'display_notice_core_missing' ) );
+			add_action( 'admin_notices', array( $this, 'display_notice_core_missing' ), 8 );
 			
 		}else{
 
@@ -202,25 +202,41 @@ class DLM_AMM_Learndash {
 	 */
 	public function core_exists() {
 
-		// check for Learndash addon
-		if( !defined( 'LEARNDASH_VERSION' ) ){
-			return 'missing_lrd';
-		}
-
-		// check for Download Monitor & DLM Advanced Access Manager
-
-		if( !defined( 'DLM_VERSION' ) && !class_exists( 'DLM_Advanced_Access_Manager' ) ){
-			return 'missing_both';
-		}
+		$missing = array();
 
 		// check for Download Monitor
 		if( !defined( 'DLM_VERSION' ) ){
-			return 'missing_dlm';
+			$missing[] = 'missing_dlm';
 		}
 
 		// check for DLM Advanced Access Manager
-		if( !class_exists( 'DLM_Advanced_Access_Manager' ) ){
-			return 'missing_aam';
+		if( ! class_exists( 'DLM_Advanced_Access_Manager' ) ){
+			$missing[] = 'missing_aam';
+		}
+		
+		// check for Restrict Membership Pro
+		if ( ! defined( 'LEARNDASH_VERSION' ) ){
+			$missing[] = 'missing_lrd';
+		}
+
+		if ( 3 == count( $missing ) ) {
+			  return 'missing_all';
+		}
+
+		if ( 2 == count( $missing ) ) {
+			if ( ! array_diff( array( 'missing_dlm', 'missing_aam' ), $missing ) ) {
+				return 'missing_dlm_amm';
+			}
+			if ( ! array_diff( array( 'missing_dlm', 'missing_lrd' ), $missing ) ) {
+				return 'missing_dlm_lrd';
+			}
+			if ( ! array_diff( array( 'missing_aam', 'missing_lrd' ), $missing ) ) {
+				return 'missing_amm_lrd';
+			}
+		}
+
+		if ( 1 == count( $missing ) ) {
+			return $missing[0];
 		}
 
 		return 'ok';
@@ -234,14 +250,41 @@ class DLM_AMM_Learndash {
 	 * @since 1.0.0
 	 */
 	public function display_notice_core_missing() {
+
+		$dlm_link = '<a href="https://wordpress.org/plugins/download-monitor/" target="_blank"><strong>' . __( 'Download Monitor', 'dlm-learndash-integration' ) . '</strong></a>';
+		$lrd_link = '<a href="https://www.learndash.com/" target="_blank"><strong>' . __( 'LearnDash', 'dlm-learndash-integration' ) . '</strong></a>';
+		$aam_link = '<a href="https://www.download-monitor.com/extensions/advanced-access-manager/?utm_source=download-monitor&utm_medium=learndash-integration&utm_campaign=upsell" target="_blank"><strong>' . __( 'Download Monitor - Advanced Access Manager', 'dlm-learndash-integration' ) . '</strong></a>';
+
 		$core_exists = $this->core_exists();
 		$notice_messages = array(
-			'missing_both' 	=> __( 'Download Monitor - Advanced Access Manager - Learndash extension requires Download Monitor & Download Monitor - Advanced Access Manager addons in order to work.', 'dlm-learndash-integration' ),
-			'missing_dlm' 	=> __( 'Download Monitor - Advanced Access Manager - Learndash extension requires Download Monitor addon in order to work.', 'dlm-learndash-integration' ),
-			'missing_aam'	=> __( 'Download Monitor - Advanced Access Manager - Learndash extension requires Download Monitor - Advanced Access Manager addon in order to work.', 'dlm-learndash-integration' ),
-			'missing_lrd'	=> __( 'Download Monitor - Advanced Access Manager - Learndash extension requires LearnDasn LMS addon in order to work.', 'dlm-learndash-integration' ),
+			'missing_dlm' 		=> sprintf( __( 'Download Monitor & LearnDash integration requires %s in order to work.', 'dlm-learndash-integration' ), $dlm_link ),
+			'missing_aam'		=> sprintf( __( 'Download Monitor & LearnDash integration requires %s addon in order to work.', 'dlm-learndash-integration' ), $aam_link ),
+			'missing_lrd' 		=> sprintf( __( 'Download Monitor & LearnDash integration requires %s in order to work.', 'dlm-learndash-integration' ), $lrd_link ),
+			'missing_dlm_amm' 	=> sprintf( __( 'Download Monitor & LearnDash integration requires %s & %s addon in order to work.', 'dlm-learndash-integration' ), $dlm_link, $aam_link ),
+			'missing_dlm_lrd' 	=> sprintf( __( 'Download Monitor & LearnDash integration requires %s & %s plugin in order to work.', 'dlm-learndash-integration' ), $dlm_link, $lrd_link ),
+			'missing_amm_lrd' 	=> sprintf( __( 'Download Monitor & LearnDash integration requires %s addon & %s plugin in order to work.', 'dlm-learndash-integration' ), $aam_link, $lrd_link ),
+			'missing_all' 		=> sprintf( __( 'Download Monitor & LearnDash integration requires %s & %s addon & %s plugin in order to work.', 'dlm-learndash-integration' ), $dlm_link, $aam_link, $lrd_link ),
 		);
 		$class = 'notice notice-error';
-		printf( '<div class="%1$s"><p>%2$s</p></div>', esc_attr( $class ), esc_html( $notice_messages[ $core_exists ] ) ); 
+		printf( '<div class="%1$s"><p>%2$s</p></div>', esc_attr( $class ), wp_kses_post( $notice_messages[ $core_exists ] ) ); 
+
+
+	}
+
+	/**
+	 * Check if we are on a dlm page
+	 *
+	 * @return bool
+	 *
+	 * @since 1.0.0
+	 */
+	public function is_dlm_admin_page() {
+		global $pagenow;
+
+		if( 'plugins.php' === $pagenow || ( isset( $_GET['post_type'] ) && 'dlm_download' === $_GET['post_type'] ) ){
+			return true;
+		}
+
+		return false;
 	}
 }
