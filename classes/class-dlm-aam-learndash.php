@@ -1,7 +1,7 @@
 <?php
 class DLM_AMM_Learndash {
 
-	const VERSION = '1.0.0';
+	const VERSION = '1.0.1';
 	
 	/**
 	 * Holds the class object.
@@ -185,7 +185,7 @@ class DLM_AMM_Learndash {
 
 		if ( ( $current_user instanceof WP_User ) && 0 !== $current_user->ID ) {
 			// Check if user ID is either in the group users or group leaders
-			if ( learndash_is_user_in_group( (int) $current_user->ID, $group_id ) || in_array( $current_user->ID, learndash_get_groups_administrators( $group_id ) ) ) {
+			if ( learndash_is_user_in_group( (int) $current_user->ID, $group_id ) || in_array( $current_user, learndash_get_groups_administrators( $group_id ) ) ) {
 				$applies = true;
 			}
 		}

@@ -4,7 +4,7 @@ Tags: best download monitor plugin, manage downloads access, manage user access,
 Requires at least: 5.2
 Tested up to: 6.0
 Requires PHP: 5.6
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GNU General Public License v3.0 or later
 The WordPress gallery plugin that's highly customizable & you can use to impress your clients. Create beautiful image galleries in minutes.
 
@@ -43,6 +43,9 @@ The simplest way to install is to click on \'Plugins\' then \'Add\' and type \'D
 
 
 == Changelog ==
+
+= 1.0.1 - 23.09.2022 =
+* Fixed: Checking group administrators ( [#1](https://github.com/WPChill/download-monitor-learndash-integration/issues/1) )
 
 = 1.0.0 =
 * Initial Release
