@@ -3,7 +3,7 @@
 	Plugin Name: Download Monitor & LearnDash integration
 	Plugin URI: https://www.download-monitor.com/extensions/dlm-learndash-integration/
 	Description: The Advanced Access Manager - Learndash extension allows you to limit downloads to Learndash user groups.
-	Version: 1.0.0
+	Version: 1.0.1
 	Author: WPChill
 	Author URI: https://wpchill.com
 	License: GPL v3
